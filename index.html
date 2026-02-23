@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CF Tracker</title>
@@ -11,9 +11,12 @@
     <h1>CF Tracker</h1>
     <input type="text" id="handle" placeholder="Enter CF handle">
     <button onclick="fetchData()">Search</button>
+    <div id="loader">Loading...</div>
     <div id="rating"></div>
     <canvas id="chart" width="800" height="400"></canvas>
+    <div id="contests"></div>
     <div id="tags"></div>
+    <div id="recommendations"></div>
     <script src="script.js"></script>
 </body>
 </html>

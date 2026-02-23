@@ -46,3 +46,30 @@ button {
     background: #16213e;
     border-left: 3px solid #e94560;
 }
+#recommendations a {
+    color: #e94560;
+    text-decoration: none;
+}
+#recommendations h3 {
+    margin-top: 15px;
+    color: #a8a8b3;
+}
+#loader {
+    display: none;
+    margin-top: 20px;
+    font-size: 18px;
+    color: #e94560;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+th, td {
+    padding: 8px 12px;
+    text-align: left;
+    border-bottom: 1px solid #16213e;
+}
+th {
+    color: #e94560;
+}
