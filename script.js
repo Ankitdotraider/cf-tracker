@@ -29,7 +29,8 @@ async function fetchData() {
      tableDiv.innerHTML += '</table>';
     
     const ctx = document.getElementById('chart').getContext('2d');
-    new Chart(ctx, {
+    if(window.myChart) window.myChart.destroy();
+    window.myChart = new Chart(ctx, {
         type: 'line',
         data: {
             labels: labels,
@@ -73,5 +74,32 @@ async function fetchData() {
             recoDiv.innerHTML += `<div><a href="https://codeforces.com/problemset/problem/${p.contestId}/${p.index}" target="_blank">${p.name} (${p.rating})</a></div>`;
         });
     }
+
+    // User comparison
+    const handle2 = document.getElementById('handle2').value;
+    if(handle2){
+    const user2Res = await fetch(`https://codeforces.com/api/user.info?handles=${handle2}`);
+    const user2Data = await user2Res.json();
+    const user2 = user2Data.result[0];
+    
+    const sub2Res = await fetch(`https://codeforces.com/api/user.status?handle=${handle2}&count=500`);
+    const sub2Data = await sub2Res.json();
+    const solved2 = sub2Data.result.filter(s => s.verdict === 'OK').length;
+    const solved1 = submissions.filter(s => s.verdict === 'OK').length;
+    
+    const compareDiv = document.getElementById('compare');
+    compareDiv.innerHTML = `
+        <h2>Comparison</h2>
+        <table>
+            <tr><th></th><th>${handle}</th><th>${handle2}</th></tr>
+            <tr><td>Rating</td><td>${user.rating}</td><td>${user2.rating}</td></tr>
+            <tr><td>Max Rating</td><td>${user.maxRating}</td><td>${user2.maxRating}</td></tr>
+            <tr><td>Problems Solved</td><td>${solved1}</td><td>${solved2}</td></tr>
+        </table>
+    `;
+}
+
+
     document.getElementById('loader').style.display = 'none';
+    
 }
