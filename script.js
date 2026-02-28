@@ -41,7 +41,40 @@ async function fetchData() {
     const subRes = await fetch(`https://codeforces.com/api/user.status?handle=${handle}&count=500`);
     const subData = await subRes.json();
     const submissions = subData.result;
-    
+    // Heatmap
+const dayCounts = {};
+submissions.forEach(s => {
+    const date = new Date(s.creationTimeSeconds * 1000);
+    const key = date.toISOString().split('T')[0];
+    dayCounts[key] = (dayCounts[key] || 0) + 1;
+});
+
+const heatmapDiv = document.getElementById('heatmap');
+heatmapDiv.innerHTML = '<h2>Submission Heatmap</h2>';
+
+const grid = document.createElement('div');
+grid.style.cssText = 'display:flex; flex-wrap:wrap; gap:3px; max-width:800px;';
+
+for(let i = 364; i >= 0; i--){
+    const date = new Date();
+    date.setDate(date.getDate() - i);
+    const key = date.toISOString().split('T')[0];
+    const count = dayCounts[key] || 0;
+
+    const cell = document.createElement('div');
+    cell.style.cssText = `width:14px; height:14px; border-radius:2px;`;
+    cell.title = `${key}: ${count} submissions`;
+
+    if(count === 0) cell.style.background = '#ebedf0';
+    else if(count <= 2) cell.style.background = '#9be9a8';
+    else if(count <= 5) cell.style.background = '#40c463';
+    else if(count <= 10) cell.style.background = '#30a14e';
+    else cell.style.background = '#216e39';
+
+    grid.appendChild(cell);
+}
+
+heatmapDiv.appendChild(grid);
     const tagCount = {};
     submissions.forEach(sub => {
         if(sub.verdict === 'OK'){
