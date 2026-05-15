@@ -1,10 +1,17 @@
 # CF Tracker
 
+![Live](https://img.shields.io/badge/live-cf--tracker--app.vercel.app-6366f1?style=flat-square&logo=vercel)
+![Backend](https://img.shields.io/badge/backend-render-46E3B7?style=flat-square&logo=render)
+![React](https://img.shields.io/badge/react-18-61DAFB?style=flat-square&logo=react)
+![Node](https://img.shields.io/badge/node-express-339933?style=flat-square&logo=node.js)
+![PostgreSQL](https://img.shields.io/badge/db-postgresql-4169E1?style=flat-square&logo=postgresql)
+![License](https://img.shields.io/badge/license-MIT-green?style=flat-square)
+
 A full-stack web app to track and improve your Codeforces competitive programming performance.
 
 ## Features
 
-- Rating history graph across all contests
+- Rating history graph across all contests with rank boundary markers
 - Contest history with rank, rating delta, and per-contest solved/missed problems
 - Weak tag analysis based on wrong answer frequency
 - Personalized problem recommendations near your current rating
