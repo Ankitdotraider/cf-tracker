@@ -37,14 +37,110 @@ button {
     margin-top: 20px;
     font-size: 24px;
 }
-#tags {
+#tags-resources-wrapper {
+    display: flex;
+    gap: 30px;
     margin-top: 30px;
+    align-items: flex-start;
 }
+
+#tags {
+    flex: 1;
+    min-width: 250px;
+}
+
+#resources {
+    flex: 2;
+}
+
+#tags h2, #resources h2 {
+    color: #e94560;
+    margin-bottom: 15px;
+}
+
 #tags div {
-    padding: 5px 10px;
-    margin: 3px 0;
+    padding: 8px 12px;
+    margin: 5px 0;
     background: #16213e;
     border-left: 3px solid #e94560;
+    border-radius: 4px;
+}
+
+.resource-group {
+    background: #16213e;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.resource-group h3 {
+    font-size: 16px;
+    color: #ffffff;
+    margin-bottom: 12px;
+}
+
+.tag-title {
+    color: #e94560;
+    text-transform: capitalize;
+}
+
+.resource-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+}
+
+.resource-card {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    background: #1a1a2e;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: transform 0.2s ease, background 0.2s ease;
+    border-left: 4px solid #e94560;
+}
+
+.resource-card:hover {
+    transform: translateY(-2px);
+    background: #0f3460;
+}
+
+.resource-card.cpa {
+    border-left-color: #00b4d8;
+}
+
+.resource-card.book {
+    border-left-color: #e94560;
+}
+
+.resource-card.cses {
+    border-left-color: #06d6a0;
+}
+
+.resource-card.atcoder {
+    border-left-color: #ffd166;
+}
+
+.res-icon {
+    font-size: 22px;
+}
+
+.res-sub {
+    font-size: 11px;
+    color: #a8a8b3;
+    margin-top: 2px;
+}
+
+@media (max-width: 850px) {
+    #tags-resources-wrapper {
+        flex-direction: column;
+    }
+    #tags, #resources {
+        width: 100%;
+    }
 }
 #recommendations a {
     color: #e94560;

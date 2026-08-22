@@ -1,3 +1,146 @@
+const TAG_RESOURCES = {
+    'dp': {
+        cpa: 'https://cp-algorithms.com/dynamic_programming/intro-to-dp.html',
+        cses: 'https://cses.fi/problemset/list/#dp',
+        atcoder: 'https://kenkoooo.com/atcoder/#/table/?tag=dp',
+        book: 'https://cses.fi/book/book.pdf#page=71'
+    },
+    'graphs': {
+        cpa: 'https://cp-algorithms.com/graph/breadth-first-search.html',
+        cses: 'https://cses.fi/problemset/list/#graph',
+        atcoder: 'https://kenkoooo.com/atcoder/#/table/?tag=graph',
+        book: 'https://cses.fi/book/book.pdf#page=111'
+    },
+    'dfs and similar': {
+        cpa: 'https://cp-algorithms.com/graph/depth-first-search.html',
+        cses: 'https://cses.fi/problemset/list/#graph',
+        atcoder: 'https://kenkoooo.com/atcoder/#/table/?tag=dfs',
+        book: 'https://cses.fi/book/book.pdf#page=113'
+    },
+    'binary search': {
+        cpa: 'https://cp-algorithms.com/num_methods/binary_search.html',
+        cses: 'https://cses.fi/problemset/task/1085',
+        atcoder: 'https://kenkoooo.com/atcoder/#/table/?tag=binary-search',
+        book: 'https://cses.fi/book/book.pdf#page=33'
+    },
+    'math': {
+        cpa: 'https://cp-algorithms.com/algebra/binary-exp.html',
+        cses: 'https://cses.fi/problemset/list/#math',
+        atcoder: 'https://kenkoooo.com/atcoder/#/table/?tag=math',
+        book: 'https://cses.fi/book/book.pdf#page=201'
+    },
+    'number theory': {
+        cpa: 'https://cp-algorithms.com/algebra/prime-sieve-linear.html',
+        cses: 'https://cses.fi/problemset/list/#math',
+        atcoder: 'https://kenkoooo.com/atcoder/#/table/?tag=number-theory',
+        book: 'https://cses.fi/book/book.pdf#page=203'
+    },
+    'greedy': {
+        cpa: 'https://cp-algorithms.com/schedules/schedule_one_machine.html',
+        cses: 'https://cses.fi/problemset/list/#sorting',
+        atcoder: 'https://kenkoooo.com/atcoder/#/table/?tag=greedy',
+        book: 'https://cses.fi/book/book.pdf#page=61'
+    },
+    'strings': {
+        cpa: 'https://cp-algorithms.com/string/string-hashing.html',
+        cses: 'https://cses.fi/problemset/list/#string',
+        atcoder: 'https://kenkoooo.com/atcoder/#/table/?tag=string',
+        book: 'https://cses.fi/book/book.pdf#page=245'
+    },
+    'trees': {
+        cpa: 'https://cp-algorithms.com/graph/lca.html',
+        cses: 'https://cses.fi/problemset/list/#tree',
+        atcoder: 'https://kenkoooo.com/atcoder/#/table/?tag=tree',
+        book: 'https://cses.fi/book/book.pdf#page=137'
+    },
+    'data structures': {
+        cpa: 'https://cp-algorithms.com/data_structures/segment_tree.html',
+        cses: 'https://cses.fi/problemset/list/#range',
+        atcoder: 'https://kenkoooo.com/atcoder/#/table/?tag=data-structure',
+        book: 'https://cses.fi/book/book.pdf#page=83'
+    },
+    'bitmasks': {
+        cpa: 'https://cp-algorithms.com/algebra/bit-manipulation.html',
+        cses: 'https://cses.fi/problemset/task/2181',
+        atcoder: 'https://kenkoooo.com/atcoder/#/table/?tag=bitmask',
+        book: 'https://cses.fi/book/book.pdf#page=101'
+    },
+    'two pointers': {
+        cpa: 'https://cp-algorithms.com/two_pointers/two_pointers.html',
+        cses: 'https://cses.fi/problemset/task/1640',
+        atcoder: 'https://kenkoooo.com/atcoder/#/table/?tag=two-pointers',
+        book: 'https://cses.fi/book/book.pdf#page=79'
+    },
+    'dsu': {
+        cpa: 'https://cp-algorithms.com/data_structures/disjoint_set_union.html',
+        cses: 'https://cses.fi/problemset/task/1676',
+        atcoder: 'https://kenkoooo.com/atcoder/#/table/?tag=dsu',
+        book: 'https://cses.fi/book/book.pdf#page=149'
+    },
+    'shortest paths': {
+        cpa: 'https://cp-algorithms.com/graph/dijkstra.html',
+        cses: 'https://cses.fi/problemset/task/1671',
+        atcoder: 'https://kenkoooo.com/atcoder/#/table/?tag=shortest-path',
+        book: 'https://cses.fi/book/book.pdf#page=123'
+    }
+};
+
+function renderResources(weakTags) {
+    const resDiv = document.getElementById('resources');
+    resDiv.innerHTML = '<h2>Resources for Weak Tags</h2>';
+    
+    if (!weakTags || weakTags.length === 0) {
+        resDiv.innerHTML += '<p style="color: #a8a8b3;">No tag data available.</p>';
+        return;
+    }
+
+    weakTags.forEach(tag => {
+        const key = tag.toLowerCase();
+        const mapping = TAG_RESOURCES[key] || {};
+        
+        const cpaUrl = mapping.cpa || `https://cp-algorithms.com/`;
+        const csesUrl = mapping.cses || `https://cses.fi/problemset/`;
+        const atcoderUrl = mapping.atcoder || `https://kenkoooo.com/atcoder/#/table/`;
+        const bookUrl = mapping.book || `https://cses.fi/book/book.pdf`;
+
+        resDiv.innerHTML += `
+            <div class="resource-group">
+                <h3>Weak Tag: <span class="tag-title">${tag}</span></h3>
+                <div class="resource-cards">
+                    <a class="resource-card cpa" href="${cpaUrl}" target="_blank">
+                        <span class="res-icon">📘</span>
+                        <div>
+                            <strong>CP-Algorithms</strong>
+                            <div class="res-sub">Theory & Implementations</div>
+                        </div>
+                    </a>
+                    <a class="resource-card book" href="${bookUrl}" target="_blank">
+                        <span class="res-icon">📖</span>
+                        <div>
+                            <strong>CP Handbook</strong>
+                            <div class="res-sub">Antti Laaksonen's Guide</div>
+                        </div>
+                    </a>
+                    <a class="resource-card cses" href="${csesUrl}" target="_blank">
+                        <span class="res-icon">📝</span>
+                        <div>
+                            <strong>CSES Practice</strong>
+                            <div class="res-sub">Standard Problem Set</div>
+                        </div>
+                    </a>
+                    <a class="resource-card atcoder" href="${atcoderUrl}" target="_blank">
+                        <span class="res-icon">🏷️</span>
+                        <div>
+                            <strong>AtCoder Problems</strong>
+                            <div class="res-sub">Filtered Tasks</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        `;
+    });
+}
+
 async function fetchData() {
     document.getElementById('loader').style.display = 'block';
     const handle = document.getElementById('handle').value;
@@ -92,6 +235,7 @@ heatmapDiv.appendChild(grid);
     });
     
     const weakTags = sorted.slice(-3).map(([tag]) => tag);
+    renderResources(weakTags);
     const recoDiv = document.getElementById('recommendations');
     recoDiv.innerHTML = '<h2>Recommended Problems</h2>';
     
